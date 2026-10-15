@@ -1,0 +1,88 @@
+/* 
+    ecommerce-start
+*/
+.nm-ecommerce {
+    &-area {
+        margin-top: 24px;
+        margin-left: 24px;
+        margin-right: 24px;
+        border-radius: 16px;
+        padding-top: 200px;
+        padding-bottom: 150px;
+        background: linear-gradient(180deg, color-mix(in oklab, var(--tx-primary) 12%, white) 0%, #FFFFFF 100%);
+
+        @media #{$xxl,$xl} {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        @media #{$lg} {
+            padding-top: 100px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        
+        @media #{$md,$xs} {
+            padding-top: 100px;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-bottom: 100px;
+        }
+
+    }
+
+
+
+    &-img {
+        width: 59%;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: -1;
+
+        @media #{$lg} {
+            top: 74%;
+        }
+        @media #{$md,$xs} {
+            width: 100%;
+            position: unset;
+            transform: unset;
+        }
+    }
+
+    &-content {
+        max-width: 660px;
+
+        .sec-disc {
+            margin-top: 25px;
+            opacity: 80%;
+        }
+    }
+
+    &-list {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        margin-top: 27px;
+
+        li {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            color: var(--tx-heading);
+
+            i {
+                color: var(--tx-primary-deep);
+            }
+        }
+    }
+    
+}
+
+
+
+
+/* 
+    ecommerce-end
+*/

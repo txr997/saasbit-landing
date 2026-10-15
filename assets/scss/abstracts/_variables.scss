@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/*
+    Colours are NOT defined here.
+    The two brand colors ($tx-primary / $tx-secondary) and everything derived
+    from them live in abstracts/_theme.scss  ->  edit that file for a new theme.
+*/
+:root {
+
+    scroll-behavior: inherit;
+
+	--kk-font-1: "Manrope", sans-serif;
+	--kk-font-4:  "Inter", sans-serif;
+
+	--kk-cube-1: all .25s cubic-bezier(0.65, 0.05, 0.36, 1);
+
+	--kk-cube-2: cubic-bezier(0.65, 0.05, 0.36, 1);
+
+}
+
+
+/*
+    root-variable-end
+*/
+
+$over:'(min-width: 1800px)';
+$xxxl: 'only screen and (min-width: 1600px) and (max-width: 1799px)';
+$xxl: 'only screen and (min-width: 1400px) and (max-width: 1599px)';
+$xl: 'only screen and (min-width: 1200px) and (max-width: 1399px)';
+$lg: 'only screen and (min-width: 992px) and (max-width: 1199px)';
+$md:'only screen and (min-width: 768px) and (max-width: 991px)';
+$sm: 'only screen and (min-width: 576px) and (max-width: 767px)';
+$xs:'(max-width: 767px)';
+
+
+/*
+    Dark section backdrop.
+    The photo/texture is kept only as a luminosity map - its colours come from
+    the theme (glows are primary / secondary), so it matches every theme.
+*/
+@mixin tx-backdrop($texture: '../img/hero/bg-img.jpg', $glow-1: 58% 105%, $glow-2: 2% 0%, $glow-3: 100% 35%, $pos: center) {
+    background-color: var(--tx-ink);
+    background-image:
+        url($texture),
+        radial-gradient(70% 90% at #{$glow-1}, color-mix(in oklab, var(--tx-primary) 78%, transparent) 0%, transparent 72%),
+        radial-gradient(60% 85% at #{$glow-2}, color-mix(in oklab, var(--tx-secondary) 92%, transparent) 0%, transparent 72%),
+        radial-gradient(40% 60% at #{$glow-3}, color-mix(in oklab, var(--tx-secondary) 50%, transparent) 0%, transparent 75%);
+    background-size: cover;
+    background-position: #{$pos}, center, center, center;
+    background-repeat: no-repeat;
+    background-blend-mode: soft-light, normal, normal, normal;
+}
+
+/*
+    Screenshot slot.
+    The box keeps its shape, whatever image you drop in is scaled to cover it and
+    aligned to the TOP (so tall full-page screenshots show the hero, not the middle).
+*/
+@mixin tx-shot-fill {
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100% !important;
+        object-fit: cover;
+        object-position: top center;
+    }
+}

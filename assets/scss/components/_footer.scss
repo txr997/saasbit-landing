@@ -1,0 +1,207 @@
+/* 
+    footer-start
+*/
+.px-footer {
+
+    &-area {
+        margin: 24px;
+        
+        @media #{$xxl,$xl,$lg,$md,$xs} {
+            margin: 10px;
+        }
+    }
+
+    &-top {
+        border-radius: 16px;
+        padding-top: 130px;
+        padding-bottom: 130px;
+        @include tx-backdrop('../img/hero/bg-img.jpg', 50% 118%, 96% -8%, 0% 40%, 30% 40%);
+    }
+
+    &-content {
+        text-align: center;
+        max-width: 682px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .elite-authors {
+            margin-bottom: 48px;
+        }
+
+        .title {
+            color: #fff;
+            line-height: 1.066;
+            font-size: 60px;
+            margin-bottom: 28px;
+
+            span {
+                color: var(--tx-primary-bright);
+            }
+
+                        
+            @media #{$xxl} {
+                font-size: 55px;
+            }
+
+            @media #{$xl} {
+                font-size: 50px;
+            }
+
+            @media #{$lg} {
+                font-size: 45px;
+            }
+
+            @media #{$md} {
+                font-size: 40px;
+            }
+
+
+            @media #{$xs} {
+                font-size: 30px;
+            }
+
+            @media #{$sm} {
+                font-size: 35px;
+            }
+        }
+
+        .disc {
+            font-size: 22px;
+            color: #fff;
+            opacity: 80%;
+            font-weight: 400;
+            margin-bottom: 45px;
+        }
+
+    }
+    
+    &-bottom {
+        border-radius: 14px;
+        background: var(--tx-secondary);
+        padding: 28px 0;
+        margin-top: 24px;
+    }
+
+    &-copyright {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+
+
+        @media #{$md,$xs} {
+            justify-content: center;
+        }
+
+    
+        .design {
+            color: color-mix(in oklab, var(--tx-on-secondary) 88%, transparent);
+            text-transform: capitalize;
+            font-size: 16px;
+
+            a {
+                color: var(--tx-on-secondary);
+                font-weight: 500;
+                transition: var(--kk-cube-1);
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .copyright-text {
+            color: color-mix(in oklab, var(--tx-on-secondary) 88%, transparent);
+            text-transform: capitalize;
+            font-size: 16px;
+
+            a {
+                color: var(--tx-on-secondary);
+                font-weight: 500;
+                transition: var(--kk-cube-1);
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+
+
+
+    /* screenshot slots: fixed box, any image is cropped from the top to fit */
+    &-demo {
+        &-1,
+        &-3,
+        &-4,
+        &-5 {
+            @include tx-shot-fill;
+            background: var(--tx-ink-2);
+        }
+
+        &-1 {
+            width: 18%;
+            height: 212px;
+            border-radius: 8px;
+            position: absolute;
+            top: 17%;
+            left: 2%;
+            z-index: -1;
+            @media #{$xs} {
+                display: none;
+                
+            }
+        }
+
+
+        &-3 {
+            width: 20%;
+            height: 233px;
+            border-radius: 8px;
+            left: 13%;
+            bottom: -4%;
+            position: absolute;
+            z-index: -1;
+
+            @media #{$xs} {
+                display: none;
+                
+            }
+        }
+
+        &-4 {
+            width: 20%;
+            height: 210px;
+            border-radius: 8px;
+            position: absolute;
+            right: -3%;
+            top: 6%;
+            z-index: -1;
+
+            @media #{$xs} {
+                display: none;
+                
+            }
+        }
+
+        &-5 {
+            width: 20%;
+            height: 231px;
+            border-radius: 8px;
+            position: absolute;
+            right: 10%;
+            bottom: -7%;
+            z-index: -1;
+
+            @media #{$xs} {
+                display: none;
+                
+            }
+        }
+    }
+}
+
+
+/* 
+    footer-end
+*/

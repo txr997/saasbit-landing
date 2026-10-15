@@ -1,0 +1,124 @@
+.nm-sec-title,
+.px-scn-title-1 {
+    font-family: var(--kk-font-4);
+    color: var(--tx-heading);
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 1.076;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+
+    @media #{$xl} {
+        font-size: 50px;
+    }
+
+    @media #{$lg} {
+        font-size: 45px;
+    }
+
+    @media #{$md} {
+        font-size: 40px;
+    }
+
+
+    @media #{$xs} {
+        font-size: 30px;
+    }
+
+    @media #{$sm} {
+        font-size: 35px;
+    }
+
+}
+
+
+
+.nm-h-1,
+.px-h-1 {
+    font-family: var(--kk-font-4);
+    line-height: 1.076;
+    font-weight: 600;
+    color: var(--tx-heading);
+    margin-bottom: 0;
+}
+
+.nm-p-1,
+.px-p-1,
+.px-para-1 {
+    font-family: var(--kk-font-4);
+    font-size: 18px;
+    line-height: 1.555;
+    font-weight: 400;
+    color: var(--tx-text);
+    margin-bottom: 0;
+}
+
+
+@-webkit-keyframes headShake {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  
+    6.5% {
+      -webkit-transform: translateX(-6px) rotateY(-9deg);
+      transform: translateX(-6px) rotateY(-9deg);
+    }
+  
+    18.5% {
+      -webkit-transform: translateX(5px) rotateY(7deg);
+      transform: translateX(5px) rotateY(7deg);
+    }
+  
+    31.5% {
+      -webkit-transform: translateX(-3px) rotateY(-5deg);
+      transform: translateX(-3px) rotateY(-5deg);
+    }
+  
+    43.5% {
+      -webkit-transform: translateX(2px) rotateY(3deg);
+      transform: translateX(2px) rotateY(3deg);
+    }
+  
+    50% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+  @keyframes headShake {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  
+    6.5% {
+      -webkit-transform: translateX(-6px) rotateY(-9deg);
+      transform: translateX(-6px) rotateY(-9deg);
+    }
+  
+    18.5% {
+      -webkit-transform: translateX(5px) rotateY(7deg);
+      transform: translateX(5px) rotateY(7deg);
+    }
+  
+    31.5% {
+      -webkit-transform: translateX(-3px) rotateY(-5deg);
+      transform: translateX(-3px) rotateY(-5deg);
+    }
+  
+    43.5% {
+      -webkit-transform: translateX(2px) rotateY(3deg);
+      transform: translateX(2px) rotateY(3deg);
+    }
+  
+    50% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+  .animate__headShake {
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-name: headShake;
+    animation-name: headShake;
+  }

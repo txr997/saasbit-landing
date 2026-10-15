@@ -1,0 +1,96 @@
+/* 
+    marquee-start
+*/
+.nm-marquee-text {
+    &-area {
+        position: relative;
+        z-index: 1;
+        margin-bottom: -60px;
+        
+        @media #{$md} {
+            margin-bottom: -40px;
+        }
+        
+        @media #{$xs} {
+            margin-bottom: 0px;
+        }
+        
+        &::after {
+            content: "";
+            width: 100px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(90deg, #fff 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        &::before {
+            content: "";
+            width: 100px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(270deg, #fff 0%, transparent 100%);
+            z-index: 1;
+        }
+
+    }
+    &-wrap {
+        display: flex;
+        gap: 50px;
+        margin-right: 50px;
+    }
+    &-title {
+        font-weight: 700;
+        font-size: 168px;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        flex: 0 0 auto;
+        padding-bottom: 10px;
+        transition: var(--kk-cube-1);
+        -webkit-text-stroke: 1px transparent;
+        -webkit-text-fill-color: var(--tx-primary-deep);
+
+        .has-stroke {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px var(--tx-secondary-deep);
+        }
+        .has-stroke-2 {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px var(--tx-text);
+        }
+
+        .clr-2 {
+            -webkit-text-fill-color: var(--tx-secondary-deep);
+        }
+
+        @media #{$xl} {
+            font-size: 150px;
+        }
+
+        @media #{$lg} {
+            font-size: 140px;
+        }
+
+        @media #{$md} {
+            font-size: 130px;
+        }
+
+        @media #{$xs} {
+            font-size: 60px;
+        }
+
+        @media #{$sm} {
+            font-size: 90px;
+        }
+
+        
+    }
+}
+
+/* 
+    marquee-end
+*/

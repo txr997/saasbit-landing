@@ -1,0 +1,175 @@
+/* 
+    cta-start
+*/
+.nm-cta {
+    &-area {
+        padding-top: 235px;
+        padding-bottom: 240px;
+        margin-left: 24px;
+        margin-right: 24px;
+        border-radius: 16px;
+        @include tx-backdrop('../img/hero/bg-img.jpg', 88% 112%, 100% -10%, 100% 50%, 80% 60%);
+
+        @media #{$xxl,$xl} {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* below 1200px the showcase sits under the text, so the paddings shrink */
+        @media #{$lg} {
+            padding-top: 120px;
+            padding-bottom: 100px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        @media #{$md,$xs} {
+            padding-top: 100px;
+            padding-bottom: 80px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--tx-ink) 19%, transparent 100%);
+            z-index: -1;
+        }
+    }
+
+    &-content {
+        max-width: 640px;
+
+        .title  {
+            color: #fff;
+        }
+    }
+
+    /*
+        demo showcase (right side)
+        Sized in cqw (1cqw = 1% of the showcase width) so it scales as one piece.
+        The screens are screenshot slots: fixed shape, any image is cropped from the top.
+    */
+    &-shots-wrap {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 3%;
+        width: 46%;
+        display: flex;
+        align-items: center;
+
+        @media #{$xxxl,$xxl} {
+            width: 44%;
+        }
+
+        @media #{$xl} {
+            width: 40%;
+        }
+
+        @media #{$lg,$md,$xs} {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            width: 100%;
+            max-width: 600px;
+            margin: 70px auto 0;
+            padding: 0 20px;
+        }
+    }
+
+    &-shots {
+        container-type: inline-size;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 100 / 72;
+
+        /* glow behind the cards */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 4% -4% -4%;
+            background: radial-gradient(closest-side, color-mix(in oklab, var(--tx-primary) 34%, transparent), transparent);
+            filter: blur(2.4cqw);
+        }
+    }
+
+    &-shot {
+        --nm-frame: color-mix(in oklab, var(--tx-ink-deep) 62%, #000);
+
+        position: absolute;
+        width: 40cqw;
+        padding: 0 0.7cqw 0.7cqw;
+        border-radius: 1.6cqw;
+        background: var(--nm-frame);
+        box-shadow:
+            inset 0 0 0 0.14cqw rgb(255 255 255 / 18%),
+            0 2.4cqw 5cqw rgb(0 0 0 / 50%);
+
+        /* browser top bar: 3 dots, the first one in the theme color */
+        .bar {
+            height: 3.2cqw;
+            display: flex;
+            align-items: center;
+
+            &::before {
+                content: "";
+                width: 0.9cqw;
+                height: 0.9cqw;
+                margin-left: 1.1cqw;
+                border-radius: 50%;
+                background: var(--tx-primary-bright);
+                box-shadow:
+                    1.5cqw 0 0 rgb(255 255 255 / 34%),
+                    3cqw 0 0 rgb(255 255 255 / 34%);
+            }
+        }
+
+        .screen {
+            @include tx-shot-fill;
+            position: relative;
+            /* same shape as a demo card (624 x 696) */
+            aspect-ratio: 624 / 696;
+            border-radius: 0.7cqw;
+            background: var(--tx-ink-2);
+
+            img {
+                position: absolute;
+                inset: 0;
+            }
+        }
+
+        &.is-left {
+            left: 0;
+            top: 19cqw;
+            z-index: 1;
+            transform: rotate(-8deg);
+            filter: brightness(0.8);
+        }
+
+        &.is-right {
+            right: 0;
+            top: 19cqw;
+            z-index: 1;
+            transform: rotate(8deg);
+            filter: brightness(0.8);
+        }
+
+        &.is-center {
+            left: 27cqw;
+            top: 5cqw;
+            z-index: 2;
+            width: 46cqw;
+        }
+    }
+}
+
+/* 
+    cta-end
+*/

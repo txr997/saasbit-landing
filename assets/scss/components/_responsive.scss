@@ -1,0 +1,318 @@
+/* 
+    responsive-start
+*/
+.nm-responsive {
+    &-area {
+        margin-left: 24px;
+        margin-right: 24px;
+        border-radius: 20px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        padding-bottom: 230px;
+        padding-top: 150px;
+        @include tx-backdrop('../img/responsive/bg-img.jpg', 30% 120%, 100% 0%, 0% 30%, center);
+
+        @media #{$xxl,$xl} {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        @media #{$lg,$md,$xs} {
+            padding-top: 130px;
+            padding-bottom: 100px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+       
+    }
+
+
+
+    &-img {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: -1;
+        width: 56%;
+
+        @media #{$xxxl,$xxl} {
+            width: 47%;
+        }
+        @media #{$xl} {
+            width: 39%;
+        }
+
+        @media #{$lg,$md,$xs} {
+            position: unset;
+            transform: unset;
+            width: 100%;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    /*
+        device mockup
+        Everything is sized in cqw (1cqw = 1% of the mock's width), so the whole
+        composition scales as one piece. Frames are CSS; the screens are screenshot
+        slots (fixed shape, any image is cropped from the top to fit).
+    */
+    &-mock {
+        container-type: inline-size;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1297 / 826;
+
+        /* soft floor glow under the devices */
+        &::before {
+            content: "";
+            position: absolute;
+            left: 6cqw;
+            right: 4cqw;
+            bottom: 1cqw;
+            height: 9cqw;
+            border-radius: 50%;
+            background: radial-gradient(closest-side, color-mix(in oklab, var(--tx-primary) 34%, transparent), transparent);
+            filter: blur(1.4cqw);
+        }
+    }
+}
+
+.nm-device {
+    --nm-frame: color-mix(in oklab, var(--tx-ink-deep) 62%, #000);
+    --nm-frame-edge: rgb(255 255 255 / 20%);
+
+    position: absolute;
+    background: var(--nm-frame);
+    box-shadow:
+        inset 0 0 0 0.14cqw var(--nm-frame-edge),
+        0 2.4cqw 5cqw rgb(0 0 0 / 48%);
+
+    .screen {
+        @include tx-shot-fill;
+        position: relative;
+        background: var(--tx-ink-2);
+
+        img {
+            position: absolute;
+            inset: 0;
+            margin-top: -2px;
+        }
+    }
+
+    /*
+        tablet + phone: the screenshot is shown at FULL width, nothing is cropped
+        at the sides. If it is shorter than the screen, the rest is filled with a
+        blurred copy of the same screenshot (--shot is set by main.js).
+    */
+    &-tablet,
+    &-phone {
+        .screen {
+            &::before {
+                content: "";
+                position: absolute;
+                inset: -8%;
+                background: var(--shot, none) center / cover no-repeat;
+                filter: blur(1.2cqw) saturate(1.25) brightness(0.62);
+            }
+
+            img {
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: auto !important;
+                object-fit: fill;
+            }
+        }
+    }
+
+    /*
+        phone is much taller than a demo: the screenshot is repeated from the top
+        to the bottom of the screen, so there is no gap. The <img> is the first copy,
+        the repeats are the same screenshot as a repeat-y background (--shot).
+    */
+    &-phone .screen {
+        background: var(--shot, none) 0 0 / 100% auto repeat-y;
+
+        &::before {
+            display: none;
+        }
+
+        img {
+            margin-top: 0;
+        }
+    }
+
+    &-desktop {
+        left: 4cqw;
+        top: 3.5cqw;
+        width: 70cqw;
+        padding: 1.1cqw 1.1cqw 3.8cqw;
+        border-radius: 1.5cqw;
+        transform: rotate(-4deg);
+        transform-origin: 40% 50%;
+
+        .screen {
+            aspect-ratio: 16 / 10;
+            border-radius: 0.4cqw;
+        }
+
+        /* neck */
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 11cqw;
+            height: 9cqw;
+            transform: translateX(-50%);
+            clip-path: polygon(16% 0, 84% 0, 100% 100%, 0 100%);
+            background: linear-gradient(90deg, #23262c 0%, #565b66 50%, #23262c 100%);
+        }
+
+        /* base */
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: calc(100% + 8.4cqw);
+            width: 25cqw;
+            height: 1.5cqw;
+            transform: translateX(-50%);
+            border-radius: 0.8cqw;
+            background: linear-gradient(180deg, #5d626d 0%, #2a2d34 100%);
+            box-shadow: 0 1.4cqw 2.4cqw rgb(0 0 0 / 40%);
+        }
+    }
+
+    &-tablet {
+        left: 70cqw;
+        top: 29cqw;
+        z-index: 1;
+        width: 26cqw;
+        padding: 1.3cqw;
+        border-radius: 2.4cqw;
+        transform: rotate(2.5deg);
+
+        .screen {
+            /* same shape as a demo card (624 x 696), so the demo fits with no crop */
+            aspect-ratio: 624 / 696;
+            border-radius: 1.2cqw;
+        }
+    }
+
+    &-phone {
+        left: 58cqw;
+        top: 40cqw;
+        z-index: 2;
+        width: 10.6cqw;
+        padding: 0.55cqw;
+        border-radius: 2.2cqw;
+
+        .screen {
+            aspect-ratio: 9 / 19.5;
+            border-radius: 1.7cqw;
+
+            /* dynamic island */
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0.6cqw;
+                left: 50%;
+                width: 3cqw;
+                height: 0.9cqw;
+                transform: translateX(-50%);
+                border-radius: 1cqw;
+                background: #000;
+                z-index: 1;
+            }
+        }
+    }
+}
+
+.nm-responsive {
+
+    &-sec-title {
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: -80px;
+
+        @media #{$xxxl,$xxl,$xl} {
+            margin-right: 0;
+        }
+        @media #{$lg,$md,$xs} {
+            margin-right: 0;
+            margin-bottom: 50px;
+            margin-left: 0;
+        }
+
+        .title {
+            color: #fff;
+        }
+        .sec-disc {
+            margin-top: 25px;
+            color: #fff;
+        }
+
+        .btn-wrap {
+            margin-top: 33px;
+        }
+    }
+    
+   
+    &-devices {
+        display: flex;
+        gap: 30px;
+
+        @media #{$xl,$lg,$md,$xs} {
+            flex-wrap: wrap;
+        }
+
+        &-single {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+
+            .title {
+                font-size: 18px;
+                font-weight: 500;
+                margin-top: 22px;
+            }
+
+            .disc {
+                font-size: 16px;
+                line-height: 22px;
+                color: #fff;
+                opacity: 80%;
+                font-weight: 300;
+                margin-top: 15px;
+            }
+
+            &:not(:last-child) {
+                @media #{$over,$xxxl,$xxl} {
+                    padding-right: 30px;
+                    &::after {
+                        content: "";
+                        width: 1px;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, var(--tx-ink-deep) 100%);
+                        opacity: 0.4;
+                    }
+                }
+
+            }
+        }
+    }
+    
+    
+    
+}
+/* 
+    responsive-end
+*/

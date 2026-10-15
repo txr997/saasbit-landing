@@ -1,0 +1,62 @@
+
+
+$tx-primary: #6342F5;
+$tx-secondary: #5641F2;
+
+
+
+
+:root {
+    --tx-primary: #{$tx-primary};
+    --tx-secondary: #{$tx-secondary};
+
+    /* ---- fallbacks for browsers without relative-color support ---- */
+    --tx-on-primary: #0b0d12;
+    --tx-on-secondary: #ffffff;
+
+    --tx-primary-bright: var(--tx-primary);
+    --tx-primary-deep: var(--tx-primary);
+    --tx-secondary-bright: color-mix(in oklab, var(--tx-secondary) 55%, white);
+    --tx-secondary-deep: var(--tx-secondary);
+
+    /* ---- tints (work everywhere color-mix works) ---- */
+    --tx-primary-soft: color-mix(in oklab, var(--tx-primary) 24%, white);
+    --tx-secondary-soft: color-mix(in oklab, var(--tx-secondary) 14%, white);
+
+    /* dark surfaces: near-black, lightly tinted with the brand hue */
+    --tx-ink: color-mix(in oklab, color-mix(in oklab, var(--tx-secondary) 70%, var(--tx-primary)) 13%, #06080d);
+    --tx-ink-2: color-mix(in oklab, var(--tx-ink) 90%, white);
+    --tx-ink-deep: color-mix(in oklab, var(--tx-ink) 55%, #000);
+
+    /* light surfaces + text */
+    --tx-paper: color-mix(in oklab, var(--tx-secondary) 4%, #f4f5f7);
+    --tx-heading: color-mix(in oklab, var(--tx-ink) 80%, #000);
+    --tx-text: color-mix(in oklab, var(--tx-ink) 72%, white);
+    --tx-line: color-mix(in oklab, var(--tx-ink) 16%, white);
+
+    /* gradients */
+    --tx-grad: linear-gradient(225deg, var(--tx-primary) 0%, var(--tx-secondary) 100%);
+    --tx-grad-deep: linear-gradient(225deg, color-mix(in oklab, var(--tx-secondary) 66%, var(--tx-primary)) 0%, var(--tx-secondary) 72%);
+}
+
+@supports (color: oklch(from red l c h)) {
+    :root {
+        /* black or white text, whichever reads better ON the color */
+        --tx-on-primary: oklch(from var(--tx-primary) clamp(0, calc((0.62 - l) * 1000), 1) 0 0);
+        --tx-on-secondary: oklch(from var(--tx-secondary) clamp(0, calc((0.62 - l) * 1000), 1) 0 0);
+
+        /* the brand colors pushed light enough to read on DARK sections */
+        --tx-primary-bright: oklch(from var(--tx-primary) max(l, 0.78) c h);
+        --tx-secondary-bright: oklch(from var(--tx-secondary) max(l, 0.78) c h);
+
+        /* the brand colors pushed dark enough to read on LIGHT sections */
+        --tx-primary-deep: oklch(from var(--tx-primary) min(l, 0.58) c h);
+        --tx-secondary-deep: oklch(from var(--tx-secondary) min(l, 0.5) c h);
+
+        /* dark surfaces: the secondary hue, very dark and very low chroma
+           (stays a clean dark even when the secondary is yellow / lime) */
+        --tx-ink: oklch(from var(--tx-secondary) 0.2 min(c, 0.04) h);
+        --tx-ink-2: oklch(from var(--tx-secondary) 0.25 min(c, 0.045) h);
+        --tx-ink-deep: oklch(from var(--tx-secondary) 0.14 min(c, 0.035) h);
+    }
+}
